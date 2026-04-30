@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanguard AI - Autonomous System for Military Operations</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">DEFENCE COMMAND NETWORK // VANGUARD CORE</p>
+          <h1>
+            <span class="brand-main">VANGUARD AI</span>
+            <span class="brand-sub">Autonomous System for Military Operations</span>
+          </h1>
+          <p class="hero-kicker">Tactical Command Console</p>
+          <p class="lede">
+            Tactical operator surface for live power monitoring, low-light intrusion watch,
+            environmental stress detection, and adaptive relay control. Built around the installed
+            sensor chain and tuned for a believable field-demo experience.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="connectSerialBtn" class="primary">Connect Arduino</button>
+          <button id="connectDemoBtn" class="secondary">Run Demo Stream</button>
+          <button id="disconnectBtn" class="ghost">Disconnect</button>
+        </div>
+      </header>
+
+      <nav class="section-nav">
+        <button class="section-tab active" data-section="overview">Overview</button>
+        <button class="section-tab" data-section="intelligence">AI Intel</button>
+        <button class="section-tab" data-section="control">Control</button>
+        <button class="section-tab" data-section="integration">Integration</button>
+      </nav>
+
+      <section class="status-bar">
+        <div class="status-pill">
+          <span>Feed Source</span>
+          <strong id="sourceLabel">Idle</strong>
+        </div>
+        <div class="status-pill">
+          <span>Packet Age</span>
+          <strong id="packetAge">No data</strong>
+        </div>
+        <div class="status-pill">
+          <span>Operational State</span>
+          <strong id="missionState">Awaiting telemetry</strong>
+        </div>
+        <div class="status-pill">
+          <span>Inference Confidence</span>
+          <strong id="confidenceScore">0%</strong>
+        </div>
+      </section>
+
+      <main class="section-page active" data-page="overview">
+        <div class="grid">
+          <section class="panel large">
+            <div class="panel-head">
+              <h2>Ops Picture</h2>
+              <p id="unitLabel">Unit not connected</p>
+            </div>
+            <div class="score-strip">
+              <article class="score-card power">
+                <span>Power Readiness</span>
+                <strong id="powerReadiness">0</strong>
+                <small id="powerReadinessNote">Waiting for battery profile</small>
+              </article>
+              <article class="score-card threat">
+                <span>Threat Index</span>
+                <strong id="threatIndex">0</strong>
+                <small id="threatNote">No event model yet</small>
+              </article>
+              <article class="score-card resilience">
+                <span>Resilience Window</span>
+                <strong id="resilienceWindow">--</strong>
+                <small id="resilienceNote">Need power trend</small>
+              </article>
+              <article class="score-card signal">
+                <span>Visibility Index</span>
+                <strong id="signalIntegrity">0</strong>
+                <small id="signalNote">Awaiting ambient light samples</small>
+              </article>
+            </div>
+            <div class="chart-box">
+              <canvas id="trendCanvas" width="880" height="260"></canvas>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Command Brief</h2>
+              <p>Condensed operating summary for rapid field briefing and judging.</p>
+            </div>
+            <div class="metric-list" id="panelGrid"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Sensor Bus</h2>
+              <p>Raw live values arriving from the Arduino telemetry frame.</p>
+            </div>
+            <div class="telemetry-grid" id="telemetryGrid"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Threat Stack</h2>
+              <p>Thermal, humidity, load, light, and motion stress fused into one view.</p>
+            </div>
+            <div class="metric-list" id="riskFactors"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Operator Guidance</h2>
+              <p>Immediate recommendations generated from the current field picture.</p>
+            </div>
+            <div id="actionFeed" class="event-list"></div>
+          </section>
+        </div>
+      </main>
+
+      <main class="section-page" data-page="intelligence">
+        <div class="grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Inference Models</h2>
+              <p>Backend reasoning outputs from decision trees, forecasting, and anomaly logic.</p>
+            </div>
+            <div class="metric-list" id="mlModelGrid"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Model Confidence</h2>
+              <p>Leaf-level class probabilities from the trained decision trees.</p>
+            </div>
+            <div class="metric-list" id="modelConfidenceGrid"></div>
+          </section>
+
+          <section class="panel wide">
+            <div class="panel-head">
+              <h2>Visual Intelligence Board</h2>
+              <p>Live visuals driven from telemetry, model outputs, and control state.</p>
+            </div>
+            <div class="visual-stack">
+              <div class="visual-card">
+                <span>Threat Radar</span>
+                <canvas id="threatRadarCanvas" width="360" height="260"></canvas>
+              </div>
+              <div class="visual-card">
+                <span>Mission Risk Heatmap</span>
+                <canvas id="riskHeatmapCanvas" width="360" height="260"></canvas>
+              </div>
+              <div class="visual-card">
+                <span>Sensor Field</span>
+                <canvas id="geoIntelCanvas" width="360" height="260"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel wide">
+            <div class="panel-head">
+              <h2>Decision Trace</h2>
+              <p>Traceable branch logic for the operational and fault trees.</p>
+            </div>
+            <div class="trace-grid">
+              <div>
+                <p class="trace-label">Operational Tree</p>
+                <div id="operationalTrace" class="trace-list"></div>
+              </div>
+              <div>
+                <p class="trace-label">Fault Tree</p>
+                <div id="faultTrace" class="trace-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Anomaly Watch</h2>
+              <p>Rolling deviation watch with persistence-weighted alerting.</p>
+            </div>
+            <div id="anomalyList" class="event-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Fault Flags</h2>
+              <p>Decision-tree classification paired with anomaly-backed system flags.</p>
+            </div>
+            <div id="faultList" class="event-list"></div>
+          </section>
+        </div>
+      </main>
+
+      <main class="section-page" data-page="control">
+        <div class="grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Control States</h2>
+              <p>Backend-controlled mission profiles with operator override.</p>
+            </div>
+            <div class="mode-strip">
+              <button class="mode-btn active" data-mode="PATROL">Patrol</button>
+              <button class="mode-btn" data-mode="SURVEILLANCE">Surveillance</button>
+              <button class="mode-btn" data-mode="STEALTH">Stealth</button>
+              <button class="mode-btn" data-mode="ALERT">Alert</button>
+            </div>
+            <div class="metric-list">
+              <article class="metric-item">
+                <span>Active Mode</span>
+                <strong id="activeModeLabel">PATROL</strong>
+                <span>Current backend control mode</span>
+              </article>
+              <article class="metric-item">
+                <span>Recommended Mode</span>
+                <strong id="recommendedModeLabel">PATROL</strong>
+                <span>Derived from faults, power, and threat state</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel wide">
+            <div class="panel-head">
+              <h2>Relay Control Plan</h2>
+              <p>Low-signature relay scheduling and duty-cycle execution.</p>
+            </div>
+            <div class="visual-card relay-card">
+              <span>Relay Duty Timeline</span>
+              <canvas id="relayTimelineCanvas" width="360" height="260"></canvas>
+            </div>
+            <div id="relayScheduleList" class="metric-list"></div>
+          </section>
+        </div>
+      </main>
+
+      <main class="section-page" data-page="integration">
+        <div class="grid">
+          <section class="panel wide">
+            <div class="panel-head">
+              <h2>Integration Bus</h2>
+              <p>Topics and payloads for device, backend, and dashboard integration.</p>
+            </div>
+            <div id="mqttSchemaList" class="metric-list"></div>
+          </section>
+          <section class="panel wide">
+            <div class="panel-head">
+              <h2>Scenario Overlay</h2>
+              <p>Optional simulated future-expansion inputs, clearly separated from live hardware.</p>
+            </div>
+            <div id="simOverlayList" class="metric-list"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

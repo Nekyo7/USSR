@@ -1,0 +1,11 @@
+{
+  "name": "vanguard-ai-autonomous-system-for-military-operations",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vanguard AI - Autonomous System for Military Operations",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}

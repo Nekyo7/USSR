@@ -1,0 +1,8 @@
+{"ts":0,"unitId":"ALPHA-01","battV":12.6,"battPct":92,"loadW":20.2,"tempC":30.8,"humidity":39,"currentA":1.6,"ambientLight":890,"motionDetected":0,"mode":"PATROL","simSolarW":44,"simSmokePpm":1}
+{"ts":0,"unitId":"ALPHA-01","battV":12.5,"battPct":88,"loadW":22.5,"tempC":31.5,"humidity":42,"currentA":1.8,"ambientLight":760,"motionDetected":0,"mode":"PATROL","simSolarW":39,"simSmokePpm":1}
+{"ts":0,"unitId":"ALPHA-01","battV":12.4,"battPct":84,"loadW":24.8,"tempC":32.9,"humidity":44,"currentA":2.0,"ambientLight":620,"motionDetected":0,"mode":"PATROL","simSolarW":34,"simSmokePpm":2}
+{"ts":0,"unitId":"ALPHA-01","battV":12.2,"battPct":78,"loadW":28.1,"tempC":34.8,"humidity":51,"currentA":2.3,"ambientLight":360,"motionDetected":1,"mode":"SURVEILLANCE","simSolarW":22,"simSmokePpm":3}
+{"ts":0,"unitId":"ALPHA-01","battV":12.0,"battPct":72,"loadW":31.2,"tempC":37.6,"humidity":56,"currentA":2.6,"ambientLight":140,"motionDetected":1,"mode":"SURVEILLANCE","simSolarW":12,"simSmokePpm":5}
+{"ts":0,"unitId":"ALPHA-01","battV":11.9,"battPct":68,"loadW":32.1,"tempC":39.4,"humidity":60,"currentA":2.7,"ambientLight":90,"motionDetected":1,"mode":"STEALTH","simSolarW":7,"simSmokePpm":6}
+{"ts":0,"unitId":"ALPHA-01","battV":11.7,"battPct":61,"loadW":34.0,"tempC":40.6,"humidity":63,"currentA":2.9,"ambientLight":60,"motionDetected":1,"mode":"STEALTH","simSolarW":4,"simSmokePpm":7}
+{"ts":0,"unitId":"ALPHA-01","battV":11.5,"battPct":55,"loadW":35.6,"tempC":41.8,"humidity":66,"currentA":3.1,"ambientLight":45,"motionDetected":1,"mode":"ALERT","simSolarW":2,"simSmokePpm":9}
